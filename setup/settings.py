@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'galeria',
+    #aqui ta chamando tanto a galeria qnto as configuracoes em 'app' da galeria
+    'galeria.apps.GaleriaConfig',
 ]
 
 MIDDLEWARE = [
@@ -129,6 +130,13 @@ STATICFILES_DIRS = [
 
 #caminho absoluto onde o python ira coletar os dados para implantar.
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+#Media
+
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+
+MEDIA_URL = "/media/"
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

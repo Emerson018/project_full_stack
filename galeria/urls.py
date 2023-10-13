@@ -6,6 +6,6 @@ from galeria.views import index, imagem
 #boas praticas. aqui só tem URLS se essas paginas forem relacionadas a GALERIA.
 urlpatterns = [
     path('', index, name='index'),
-    path('imagem/', imagem, name='imagem')
+    path('imagem/<int:foto_id>', imagem, name='imagem')
 
 ]
