@@ -22,6 +22,14 @@ class Fotografia(models.Model):
     publicada = models.BooleanField(default=False)
     data_fotografia = models.DateTimeField(default=datetime.now, blank=False)
 
-#é pra visualizar o item qndo chamado pra teste.
+
+#isso é pra retornar como pop-up no app
+    def __str__(self):
+        return self.nome
+
+
+'''
+é pra visualizar o item qndo chamado pra teste, bom para ver no terminal
     def __str__(self):
         return f"Fotografia [nome={self.nome}]"
+'''
