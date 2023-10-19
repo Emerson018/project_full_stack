@@ -1,8 +1,8 @@
-
+{% extends 'shared/base.html' %}
 {% load static %}
+{% block content %}
 
-{% include 'partials/_layout.html' %}
-
+            <section class="galeria" style="margin-left: 5em"></section>
                 <form action="{% url 'cadastro' %}" method="POST">
                     <!--pra manter a segunrança das informacoes,-->
                     {% csrf_token %}
@@ -33,4 +33,4 @@
     </div>
 </body>
 
-{% include 'partials/_footer.html' %}
+{% endblock %}

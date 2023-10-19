@@ -1,7 +1,7 @@
 #URLS DO USUARIOS
 
 from  django.urls import path
-from usuarios.views import login, cadastro, logout
+from apps.usuarios.views import login, cadastro, logout
 
 #boas praticas. aqui só tem URLS se essas paginas forem relacionadas a GALERIA.
 urlpatterns = [

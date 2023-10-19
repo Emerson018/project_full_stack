@@ -1,8 +1,8 @@
-
+{% extends 'shared/base.html' %}
 {% load static %}
+{% block content %}
 
-{% include 'partials/_layout.html' %}
-
+            <section class="galeria" style="margin-left: 5em"></section>
                 <!--aqui ta mandando pra 'login' e depois com POST mandando informacao pro servidor, tbm tira da url a senha -->
                 <form action="{% url 'login' %}" method="POST">
                     <!--pra manter a segunrança das informacoes,-->
@@ -29,4 +29,4 @@
     </div>
 </body>
 
-{% include 'partials/_footer.html' %}
+{% endblock %}
