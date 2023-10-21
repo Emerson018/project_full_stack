@@ -5,7 +5,7 @@
             <section class="galeria" style="margin-left: 5em">
                 <!--aqui ta mandando pra 'login' e depois com POST mandando informacao pro servidor, tbm tira da url a senha -->
                 <!--e enctype para formato de foto -->
-                <form action="{% url 'nova_imagem' %}" method="POST" enctype="multipart/form-data">
+                <form action="{% url 'editar_imagem' foto_id %}" method="POST" enctype="multipart/form-data">
                     <!--pra manter a segunrança das informacoes,-->
                     {% csrf_token %}
                     <div class="row">
@@ -21,7 +21,7 @@
                         {% endfor %}
                     </div>
                     <div>
-                        <button class="btn btn-success col-12" style="padding: top 5px;" type="submit">Inserir nova imagem</button>
+                        <button class="btn btn-success col-12" style="padding: top 5px;" type="submit">Editar imagem</button>
                     </div>
                 </form>
             </section>

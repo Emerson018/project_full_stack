@@ -1,5 +1,6 @@
 from django import forms
 
+#forms.form pq tamo criando um usuário do 0 e n de uma model pre-existente
 class LoginForms(forms.Form):
     nome_login = forms.CharField(
         label="Nome de Login",

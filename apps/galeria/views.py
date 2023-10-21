@@ -2,6 +2,7 @@
 from apps.galeria.models import Fotografia
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
+from apps.galeria.forms import FotografiaForms
 
 
 def index(request):
@@ -38,10 +39,40 @@ def buscar(request):
     return render(request, 'galeria/buscar.html', {"cards": fotografias})
 
 def nova_imagem(request):
-    return render(request, 'galeria/nova_imagem.html')
+    if not request.user.is_authenticated:
+        messages.error(request, "Faça login para adicionar uma nova imagem.")
+        return redirect('login')
+    
+    #caso seja preenchido o form, aqui salvará os dados.
+    form = FotografiaForms
+    if request.method == 'POST':
+        #reques.FILES pega as imagens
+        form = FotografiaForms(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Nova fotografia Cadastrada!')
+            return redirect('index')
+        
+    #faz a requisicao, chama 'nova_imagem.html' e cria dict com formulario
+    return render(request, 'galeria/nova_imagem.html', {'form': form})
 
-def editar_imagem(request):
-    pass
+def editar_imagem(request, foto_id):
+    #buscando algo dentro de objetos do Model de fotografias
+    fotografia = Fotografia.objects.get(id=foto_id)
+    #aqui instancia o q foi pego pra dentro de forms
+    form = FotografiaForms(instance= fotografia)
 
-def deletar_imagem(request):
-    pass
+    if request.method == 'POST':
+        form = FotografiaForms(request.POST, request.FILES, instance=fotografia)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Fotografia editada!')
+            return redirect('index')
+
+    return render(request, 'galeria/editar_imagem.html', {'form': form, 'foto_id': foto_id})
+
+def deletar_imagem(request, foto_id):
+    fotografia = Fotografia.objects.get(id=foto_id)
+    fotografia.delete()
+    messages.success(request, 'Item deletado com sucesso')
+    return redirect('index')
